@@ -7,6 +7,12 @@ from .serializers import RoomSerializer, CreateBookingSerializer, BookingListSer
 from django.db.models import Q
 from rest_framework.permissions import IsAuthenticated
 
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from django.shortcuts import get_object_or_404
+from datetime import date
+
 class RoomListView(generics.ListAPIView):
     serializer_class = RoomSerializer
     permission_classes = [AllowAny]
@@ -41,3 +47,29 @@ class UserBookingListView(generics.ListAPIView):
 
     def get_queryset(self):
         return self.request.user.bookings.all().order_by('-created_at')
+
+class CancelBookingView(APIView):
+    permission_classes=[IsAuthenticated]
+
+    def patch(self, request, pk):
+        booking = get_object_or_404(Booking, id=pk, user=request.user)
+
+        if booking.status == 'CANCELLED':
+            return Response(
+                {"detail": "This booking is already cancelled."}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        if booking.check_in_date <= date.today():
+            return Response(
+                {"detail": "You cannot cancel a booking on or after the check-in date."}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        booking.status = 'CANCELLED'
+        booking.save()
+
+        return Response(
+            {"detail": "Booking successfully cancelled."}, 
+            status=status.HTTP_200_OK
+        )
