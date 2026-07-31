@@ -47,7 +47,7 @@ class CreateBookingSerializer(serializers.ModelSerializer):
 
             overlapping_bookings = Booking.objects.filter(
                 room=room,
-                status__in=['PENDING', 'CONFIRMED'],
+                status__in=[Booking.Status.PENDING, Booking.Status.CONFIRMED],
                 check_in_date__lt=check_out,
                 check_out_date__gt=check_in
             )

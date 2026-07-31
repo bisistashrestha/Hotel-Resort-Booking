@@ -42,3 +42,4 @@ class CustomUserAdmin(UserAdmin):
             "fields": ("email", "first_name", "last_name", "phone_number", "password1", "password2"),
         }),
     )
+    readonly_fields = ("date_joined", "last_login")
