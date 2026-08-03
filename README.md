@@ -261,8 +261,8 @@ http://localhost:3000
 * [x] Booking API
 * [x] Booking Cancellation
 * [x] Double-booking Prevention
-* [ ] API Documentation (Swagger/OpenAPI)
-* [ ] Automated Tests
+* [x] API Documentation (Swagger/OpenAPI)
+* [x] Automated Tests (in Postman)
 
 ### Frontend
 
