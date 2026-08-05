@@ -1,8 +1,36 @@
+# ===========================
+# Python / Django
+# ===========================
 venv/
-.env
 __pycache__/
 *.pyc
+.env
 db.sqlite3
 staticfiles/
 media/
 Notes/
+
+# ===========================
+# Next.js
+# ===========================
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.turbo/
+
+# Frontend environment variables
+frontend/.env
+frontend/.env.local
+frontend/.env.production.local
+frontend/.env.development.local
+
+# ===========================
+# VS Code
+# ===========================
+.vscode/
+
+# ===========================
+# OS Files
+# ===========================
+.DS_Store
+Thumbs.db
