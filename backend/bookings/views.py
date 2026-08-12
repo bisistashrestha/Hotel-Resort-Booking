@@ -46,6 +46,14 @@ class RoomListView(generics.ListAPIView):
 
             queryset = queryset.exclude(id__in=booked_room_ids)
 
+            room_types = {}
+
+            for room in queryset:
+                if room.room_type not in room_types:
+                    room_types[room.room_type] = room
+
+            queryset = list(room_types.values())
+
         return queryset
 
 class CreateBookingView(generics.CreateAPIView):

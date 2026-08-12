@@ -34,31 +34,33 @@ export default function Hero() {
         </div>
 
         <div className="absolute bottom-0 left-0 h-[3rem] w-full bg-[var(--color-forest)]">
-        <button className="
-          absolute
-          left-1/2
-          -top-[clamp(0.5rem,1.4vw,5rem)]
-          -translate-x-1/2
-          inline-flex
-          items-center
-          justify-center
-          h-[clamp(52px,4.2vw,5rem)]
-          px-[clamp(2rem,4vw,5rem)]
-          text-[clamp(1rem,1.6vw,1.35rem)]
-          rounded-full
-          bg-[var(--color-primary)]
-          text-[var(--color-cream)]
-          font-heading
-          border-[0.4rem]
-          border-[var(--color-forest)]
-          transition-all
-          duration-300
-          hover:bg-[var(--color-cream)]
-          hover:text-[var(--color-primary)]
-        "
-      >
-        Reserve Stay
-      </button>
+        <Link
+          href="/booking"
+          className="
+            absolute
+            left-1/2
+            -top-[clamp(0.5rem,1.4vw,5rem)]
+            -translate-x-1/2
+            inline-flex
+            items-center
+            justify-center
+            h-[clamp(52px,4.2vw,5rem)]
+            px-[clamp(2rem,4vw,5rem)]
+            text-[clamp(1rem,1.6vw,1.35rem)]
+            rounded-full
+            bg-[var(--color-primary)]
+            !text-[var(--color-cream)]
+            font-heading
+            border-[0.4rem]
+            border-[var(--color-forest)]
+            transition-colors
+            duration-300
+            hover:bg-[var(--color-cream)]
+            hover:!text-[var(--color-forest)]
+          "
+        >
+          Reserve Stay
+        </Link>
         </div>
        </div>
     </section>
