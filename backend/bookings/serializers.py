@@ -72,19 +72,26 @@ class CreateBookingSerializer(serializers.ModelSerializer):
 
 
 class BookingListSerializer(serializers.ModelSerializer):
-    room_number=serializers.CharField(source='room.room_number', read_only=True)
-    room_type=serializers.CharField(source='room.get_room_type_display', read_only=True)
+    room_number = serializers.CharField(
+        source="room.room_number",
+        read_only=True
+    )
+
+    room_type_name = serializers.CharField(
+        source="room.get_room_type_display",
+        read_only=True
+    )
 
     class Meta:
         model = Booking
         fields = (
-            "id", 
-            "room", 
-            "room_number", 
-            "room_type", 
-            "check_in_date", 
-            "check_out_date", 
-            "total_price", 
-            "status", 
-            "created_at"
+            "id",
+            "room",
+            "room_number",
+            "room_type_name",
+            "check_in_date",
+            "check_out_date",
+            "total_price",
+            "status",
+            "created_at",
         )

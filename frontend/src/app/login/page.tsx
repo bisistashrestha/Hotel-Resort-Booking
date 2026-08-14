@@ -1,11 +1,62 @@
-import Link from "next/link";
+"use client";
 
-const points = ["Guest access", "Fast booking", "Saved preferences"];
+import Link from "next/link";
+import { useState } from "react";
+import { API_URL, apiFetch } from "@/lib/api";
 
 export default function LoginPage() {
+
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState("");
+
+	const handleSubmit = async (e: React.SubmitEvent) => {
+		e.preventDefault();
+
+		setLoading(true);
+		setError("");
+
+		try {
+			const response = await fetch(`${API_URL}/api/users/login/`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					email,
+					password,
+				}),
+			});
+
+			const data = await response.json();
+
+			if (!response.ok) {
+				throw new Error(
+					data.detail || "Invalid email or password."
+				);
+			}
+
+			localStorage.setItem("access_token", data.access);
+			localStorage.setItem("refresh_token", data.refresh);
+
+			console.log("Login successful");
+
+		} catch (error) {
+			setError(
+				error instanceof Error
+					? error.message
+					: "Something went wrong."
+			);
+		} finally {
+			setLoading(false);
+		}
+	};
+
 	return (
 		<main className="min-h-screen bg-[var(--color-cream)] px-4 py-10 text-[var(--color-ink)] sm:px-6 lg:px-8">
-			<section className="mx-auto grid min-h-[calc(100vh-5rem)] max-w-5xl items-center gap-8 rounded-[2rem] bg-white/72 p-6 shadow-[0_24px_80px_rgba(35,56,43,0.12)] backdrop-blur md:grid-cols-[1.1fr_0.9fr] md:p-10">
+			<section className="mx-auto grid bg-white/72 min-h-[calc(100vh-5rem)] max-w-5xl items-center gap-8 rounded-[2rem]  p-6 shadow-[0_24px_80px_rgba(35,56,43,0.12)] backdrop-blur md:grid-cols-[1.1fr_0.9fr] md:p-10">
 				<div>
 					<p className="text-sm uppercase tracking-[0.35em] text-[var(--color-primary)]">
 						Login / Join
@@ -33,20 +84,29 @@ export default function LoginPage() {
 					<p className="text-sm uppercase tracking-[0.3em] text-white/70">
 						Account access
 					</p>
-					<div className="mt-8 space-y-4">
+					<form onSubmit={handleSubmit} className="mt-8 space-y-4">
 						<input
+							name="email"
+							type="email"
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
+							required
 							className="w-full rounded-2xl border border-white/15 bg-white/8 px-4 py-3 text-base outline-none placeholder:text-white/45"
 							placeholder="Email address"
 						/>
 						<input
+							name="password"
+							type="password"
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+							required
 							className="w-full rounded-2xl border border-white/15 bg-white/8 px-4 py-3 text-base outline-none placeholder:text-white/45"
 							placeholder="Password"
-							type="password"
 						/>
 						<button className="w-full rounded-full bg-[var(--color-primary)] px-5 py-3 font-heading text-lg text-white transition hover:brightness-105">
 							Sign in
 						</button>
-					</div>
+					</form>
 					<p className="mt-6 text-sm text-white/72">
 						New here?{' '}
 						<Link href="/register" className="text-white underline underline-offset-4">

@@ -12,10 +12,8 @@ class UserProfileView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        return Response({
-            "message": "You made it into the VIP Lounge!",
-            "user_email": request.user.email
-        })
+        serializer = UserProfileSerializer(request.user)
+        return Response(serializer.data)
 
 class RegisterView(generics.CreateAPIView):
     serializer_class = UserRegistrationSerializer

@@ -3,7 +3,7 @@ import Logo from "./Logo";
 
 export default function Footer() {
   return (
-    <section className="bg-[var(--color-deep-forest)] text-[var(--color-cream)] pt-5 relative">
+    <section className="bg-[var(--color-deep-forest)] text-[var(--color-cream)] pt-5 pl-5 pr-5 relative">
       <div className="">
         <div className="shrink-0 justify-items-start pl-5">
                   <Logo />
