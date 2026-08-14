@@ -31,7 +31,7 @@ export default function Accommodations() {
             Accommodations
           </p>
 
-          <h2 className="mt-3 font-heading text-4xl text-[var(--color-forest)] md:text-5xl">
+          <h2 className="mt-3 font-heading text-4xl text-[var(--color-cream)] md:text-5xl">
             Stay amidst nature
           </h2>
         </div>

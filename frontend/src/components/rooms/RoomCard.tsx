@@ -17,8 +17,7 @@ export default function RoomCard({
   image,
 }: RoomCardProps) {
   return (
-    <article className="group overflow-hidden bg-white">
-      {/* Image */}
+    <article className="group overflow-hidden bg-[#F6F1E8]">
       <div className="relative aspect-[4/3] overflow-hidden">
         <Image
           src={image}
@@ -29,7 +28,6 @@ export default function RoomCard({
         />
       </div>
 
-      {/* Content */}
       <div className="px-1 pt-6">
         <p className="mb-2 text-xs uppercase tracking-[0.25em] text-[#B29552]">
           {type}

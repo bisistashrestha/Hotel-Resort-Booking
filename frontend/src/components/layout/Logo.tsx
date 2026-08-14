@@ -9,7 +9,7 @@ export default function Logo() {
           山風
         </p>
 
-        <p className="mt-1 font-heading text-[clamp(1rem,3vw,2.3rem)] leading-none">
+        <p className="mt-1 font-heading text-[clamp(1rem,3vw,2.3rem)] text-center leading-none">
           Yama Kaze
         </p>
 

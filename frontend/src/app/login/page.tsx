@@ -18,14 +18,14 @@ export default function LoginPage() {
 						preferences ready for your next mountain escape.
 					</p>
 					<div className="mt-8 flex flex-wrap gap-3">
-						{points.map((point) => (
+						{/*points.map((point) => (
 							<span
 								key={point}
 								className="rounded-full border border-[var(--color-mist)] bg-[var(--color-cream)] px-4 py-2 text-sm text-[var(--color-forest)]"
 							>
 								{point}
 							</span>
-						))}
+						))*/}
 					</div>
 				</div>
 
