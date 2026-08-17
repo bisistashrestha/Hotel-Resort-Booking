@@ -159,13 +159,13 @@ CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://your-frontend-domain.vercel.app",
+    "https://hotel-resort-booking-66l2.vercel.app",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://your-frontend-domain.vercel.app",
+    "https://hotel-resort-booking-66l2.vercel.app",
 ]
 
 SPECTACULAR_SETTINGS = {
@@ -174,6 +174,3 @@ SPECTACULAR_SETTINGS = {
     "VERSION": "1.0.0",
 }
 
-# CORS Configuration
-# Set to True for development so any frontend can connect. 
-CORS_ALLOW_ALL_ORIGINS = True

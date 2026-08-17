@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { API_URL } from "@/lib/api";
+import { API_URL, readJsonSafe } from "@/lib/api";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -64,7 +64,7 @@ export default function LoginPage() {
         }),
       });
 
-      const data = await response.json();
+      const data = await readJsonSafe(response);
 
       if (!response.ok) {
         throw new Error(data.detail || "Invalid email or password.");
