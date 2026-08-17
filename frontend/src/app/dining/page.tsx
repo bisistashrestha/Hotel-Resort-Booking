@@ -8,7 +8,7 @@ const diningMoments = [
     text: "A quiet place for morning tea, warm pastries, and a reset between activities, with handpicked infusions and a view over the pines.",
   },
   {
-    title: "Terrace Grill",
+    title: "Terrace Grillll",
     text: "Open-air dining overlooking the valley, with grilled specialties, crafted cocktails, and fireside service until sunset.",
   },
   {
