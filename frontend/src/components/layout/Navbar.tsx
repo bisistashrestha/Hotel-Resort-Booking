@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { API_URL, logout } from "@/lib/api";
 import Logo from "./Logo";
@@ -19,6 +19,7 @@ export default function Navbar() {
   const [isMoreOpen, setIsMoreOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
   const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -46,9 +47,11 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
     setIsLoggedIn(false);
+    router.push("/login");
+    router.refresh();
   };
 
   return (

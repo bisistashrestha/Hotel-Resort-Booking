@@ -86,13 +86,21 @@ class CookieTokenRefreshView(CookieTokenMixin, TokenRefreshView):
         return response
 
 
-class LogoutView(APIView):
-    permission_classes = [IsAuthenticated]
+class LogoutView(CookieTokenMixin, APIView):
+    permission_classes = [AllowAny]
 
     def post(self, request):
         response = Response({"detail": "Logged out successfully."}, status=status.HTTP_200_OK)
-        response.delete_cookie("access_token", path="/")
-        response.delete_cookie("refresh_token", path="/")
+        response.delete_cookie(
+            self.cookie_name,
+            path=self.cookie_options["path"],
+            samesite=self.cookie_options["samesite"],
+        )
+        response.delete_cookie(
+            self.refresh_cookie_name,
+            path=self.cookie_options["path"],
+            samesite=self.cookie_options["samesite"],
+        )
         return response
 
 
