@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { logout } from "@/lib/api";
+import { API_URL, logout } from "@/lib/api";
 import Logo from "./Logo";
 
 const moreLinks = [
@@ -17,11 +18,12 @@ export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isMoreOpen, setIsMoreOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000"}/api/users/profile/`, {
+        const response = await fetch(`${API_URL}/api/users/profile/`, {
           credentials: "include",
         });
         setIsLoggedIn(response.ok);
@@ -31,7 +33,7 @@ export default function Navbar() {
     };
 
     checkAuth();
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
