@@ -57,30 +57,31 @@ export default function ProfilePage() {
 
   if (loading) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[var(--color-cream)]">
-        <p>Loading profile...</p>
+      <main className="flex min-h-screen items-center justify-center bg-[var(--color-forest)] px-4">
+        <div className="rounded-[2rem] bg-[var(--color-cream)] px-6 py-5 text-[var(--color-forest)] shadow-[0_24px_60px_rgba(0,0,0,0.18)]">
+          <p>Loading profile...</p>
+        </div>
       </main>
     );
   }
 
   if (error) {
     return (
-      <main className="flex min-h-screen flex-col items-center justify-center bg-[var(--color-cream)]">
-        <p className="text-red-600">{error}</p>
+      <main className="flex min-h-screen flex-col items-center justify-center bg-[var(--color-forest)] px-4">
+        <div className="rounded-[2rem] bg-[var(--color-cream)] px-8 py-8 text-center shadow-[0_24px_60px_rgba(0,0,0,0.18)]">
+          <p className="text-red-600">{error}</p>
 
-        <Link
-          href="/login"
-          className="mt-4 underline"
-        >
-          Sign in again
-        </Link>
+          <Link href="/login" className="mt-4 inline-block underline">
+            Sign in again
+          </Link>
+        </div>
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-[var(--color-cream)] px-4 py-10">
-      <section className="mx-auto max-w-3xl rounded-[2rem] bg-white p-8 shadow-[0_24px_80px_rgba(35,56,43,0.12)]">
+    <main className="min-h-screen bg-[var(--color-forest)] px-4 py-10">
+      <section className="mx-auto max-w-3xl rounded-[2rem] bg-[var(--color-cream)] p-8 shadow-[0_24px_80px_rgba(0,0,0,0.18)]">
         <p className="text-sm uppercase tracking-[0.3em] text-[var(--color-primary)]">
           Your profile
         </p>
@@ -107,12 +108,22 @@ export default function ProfilePage() {
             <p>{profile?.phone_number}</p>
           </div>
         </div>
-		<button
-		onClick={handleLogout}
-		className="mt-8 rounded-full bg-[var(--color-deep-forest)] px-6 py-3 text-white"
-		>
-		Sign out
-		</button>
+
+        <div className="mt-8 flex flex-wrap gap-3">
+          <Link
+            href="/my-trips"
+            className="rounded-full bg-[var(--color-forest)] px-6 py-3 text-white"
+          >
+            View my trips
+          </Link>
+
+          <button
+            onClick={handleLogout}
+            className="rounded-full bg-[var(--color-deep-forest)] px-6 py-3 text-white"
+          >
+            Sign out
+          </button>
+        </div>
       </section>
     </main>
   );

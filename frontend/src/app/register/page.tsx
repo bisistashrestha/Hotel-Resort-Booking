@@ -70,8 +70,8 @@ export default function RegisterPage() {
     }
   };
 	return (
-		<main className="min-h-screen bg-[var(--color-cream)] px-4 py-10 sm:px-6 lg:px-8">
-			<section className="mx-auto grid min-h-[calc(100vh-5rem)] max-w-5xl gap-8 rounded-[2rem] bg-white/72 p-6 shadow-[0_24px_80px_rgba(35,56,43,0.12)] backdrop-blur md:grid-cols-[0.95fr_1.05fr] md:p-10">
+		<main className="min-h-screen bg-[var(--color-forest)] px-4 py-10 sm:px-6 lg:px-8">
+			<section className="mx-auto grid min-h-[60vh] max-w-5xl gap-8 rounded-[2rem] bg-[var(--color-cream)] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.18)] md:grid-cols-[0.95fr_1.05fr] md:items-start md:p-10">
 				<div className="rounded-[1.75rem] bg-[var(--color-primary)] p-6 text-white sm:p-8">
 					<p className="text-sm uppercase tracking-[0.3em] text-white/75">
 						Register

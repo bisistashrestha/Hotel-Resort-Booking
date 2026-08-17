@@ -15,7 +15,7 @@ class RoomListView(generics.ListAPIView):
     permission_classes = [AllowAny]
 
     def get_queryset(self):
-        queryset = Room.objects.all()
+        queryset = Room.objects.all().order_by("room_type", "room_number")
 
         check_in = self.request.query_params.get("check_in")
         check_out = self.request.query_params.get("check_out")
@@ -46,15 +46,12 @@ class RoomListView(generics.ListAPIView):
 
             queryset = queryset.exclude(id__in=booked_room_ids)
 
-            room_types = {}
+        unique_by_type = {}
+        for room in queryset:
+            if room.room_type not in unique_by_type:
+                unique_by_type[room.room_type] = room
 
-            for room in queryset:
-                if room.room_type not in room_types:
-                    room_types[room.room_type] = room
-
-            queryset = list(room_types.values())
-
-        return queryset
+        return list(unique_by_type.values())
 
 class CreateBookingView(generics.CreateAPIView):
     queryset = Booking.objects.all()

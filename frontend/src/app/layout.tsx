@@ -1,9 +1,10 @@
 import { Libre_Baskerville, Manrope, Italianno } from "next/font/google";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import "./globals.css";
 
 const libre = Libre_Baskerville({
   subsets: ["latin"],
-  //weight: ["400", "700"],
   variable: "--font-heading",
 });
 
@@ -27,8 +28,12 @@ export default function RootLayout({
       lang="en"
       className={`${libre.variable} ${manrope.variable} ${italianno.variable} h-full antialiased`}
     >
-      <body className="min-h-screen bg-[var(--color-forest)]">
-        {children}
+      <body className="bg-[var(--color-forest)] text-[var(--color-ink)]">
+        <div className="bg-[var(--color-forest)]">
+          <Navbar />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );
