@@ -14,44 +14,44 @@ export default function Hero() {
         sizes="100vw"	
         className="object-cover object-center opacity-48 relative"
       />
-      <div className="relative mx-auto min-h-[calc(100vh-88px)] px-4 sm:px-6 md:px-10">
-        <div className="pointer-events-none absolute inset-x-0 top-[9%] text-center">
+      <div className="relative mx-auto min-h-[70vh] sm:min-h-[calc(100vh-88px)] px-4 sm:px-6 md:px-10">
+        <div className="pointer-events-none absolute inset-x-0 top-[12%] sm:top-[9%] text-center">
           <h1 className="font-heading text-[clamp(3.8rem,7.4vw,6rem)] leading-[0.96] tracking-[-0.03em] text-[var(--color-cream)] drop-shadow-[0_10px_35px_rgba(0,0,0,0.22)]">
             Breathe.
           </h1>
         </div>
 
-        <div className="pointer-events-none absolute inset-x-0 top-[37%] text-center absolute">
+        <div className="pointer-events-none absolute inset-x-0 top-[40%] sm:top-[37%] text-center">
           <h2 className="font-heading text-[clamp(2.95rem,4.9vw,4.9rem)] leading-[0.95] tracking-[-0.025em] text-[var(--color-cream)] drop-shadow-[0_10px_35px_rgba(0,0,0,0.18)]">
             Into the Mountains.
           </h2>
         </div>
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-[15%] text-center">
+        <div className="pointer-events-none absolute inset-x-0 bottom-[18%] sm:bottom-[15%] text-center px-4">
           <p className="text-[clamp(1.2rem,1.7vw,1.7rem)] leading-none text-white/82 drop-shadow-[0_8px_18px_rgba(0,0,0,0.22)]">
             Discover Calm in Every Breeze.
           </p>
         </div>
 
-        <div className="absolute bottom-0 left-0 h-[3rem] w-full bg-[var(--color-forest)]">
+        <div className="absolute bottom-0 left-0 h-12 sm:h-[3rem] w-full bg-[var(--color-forest)]">
         <Link
           href="/booking"
           className="
             absolute
             left-1/2
-            -top-[clamp(0.5rem,1.4vw,5rem)]
+            -top-[clamp(0.4rem,1.4vw,5rem)]
             -translate-x-1/2
             inline-flex
             items-center
             justify-center
             h-[clamp(52px,4.2vw,5rem)]
-            px-[clamp(2rem,4vw,5rem)]
+            px-[clamp(1.5rem,4vw,5rem)]
             text-[clamp(1rem,1.6vw,1.35rem)]
             rounded-full
             bg-[var(--color-primary)]
             !text-[var(--color-cream)]
             font-heading
-            border-[0.4rem]
+            border-[0.25rem] sm:border-[0.4rem]
             border-[var(--color-forest)]
             transition-colors
             duration-300

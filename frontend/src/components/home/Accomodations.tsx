@@ -16,7 +16,7 @@ const AccomodationsImage = encodeURI("/images/BackgroundImg1.jpg");
 
 export default function Accommodations() {
   return (
-    <section className="relative isolate overflow-hidden bg-black px-6 py-24">
+    <section className="relative isolate overflow-hidden bg-black px-4 sm:px-6 py-14 sm:py-20 md:py-24">
       <Image
       src={AccomodationsImage}
       alt="Mountain resort courtyard with pool and distant peaks"
@@ -26,12 +26,12 @@ export default function Accommodations() {
     />
       <div className="relative z-10 mx-auto max-w-7xl">
         
-        <div className="mb-12">
-          <p className="text-sm uppercase tracking-[0.3em] text-[#B29552]">
+        <div className="mb-10 sm:mb-12">
+          <p className="text-xs sm:text-sm uppercase tracking-[0.25em] sm:tracking-[0.3em] text-[#B29552]">
             Accommodations
           </p>
 
-          <h2 className="mt-3 font-heading text-4xl text-[var(--color-cream)] md:text-5xl">
+          <h2 className="mt-3 font-heading text-3xl sm:text-4xl text-[var(--color-cream)] md:text-5xl">
             Stay amidst nature
           </h2>
         </div>
