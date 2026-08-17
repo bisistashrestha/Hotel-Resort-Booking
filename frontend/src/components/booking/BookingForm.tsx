@@ -109,8 +109,22 @@ export default function BookingForm() {
 
     const redirectTarget = `/checkout?${params.toString()}`;
 
-    if (!localStorage.getItem("access_token")) {
-      localStorage.setItem("return_to", redirectTarget);
+    if (typeof window !== "undefined") {
+      const savedProfileCheck = async () => {
+        try {
+          const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000"}/api/users/profile/`, {
+            credentials: "include",
+          });
+
+          if (!response.ok) {
+            localStorage.setItem("return_to", redirectTarget);
+          }
+        } catch (error) {
+          localStorage.setItem("return_to", redirectTarget);
+        }
+      };
+
+      savedProfileCheck();
     }
 
     router.push(redirectTarget);

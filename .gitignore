@@ -34,3 +34,7 @@ frontend/.env.development.local
 # ===========================
 .DS_Store
 Thumbs.db
+
+
+
+docs

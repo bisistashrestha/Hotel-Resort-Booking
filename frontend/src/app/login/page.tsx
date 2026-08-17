@@ -14,9 +14,21 @@ export default function LoginPage() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (typeof window !== "undefined" && localStorage.getItem("access_token")) {
-      router.replace("/my-trips");
-    }
+    const checkAuth = async () => {
+      try {
+        const response = await fetch(`${API_URL}/api/users/profile/`, {
+          credentials: "include",
+        });
+
+        if (response.ok) {
+          router.replace("/my-trips");
+        }
+      } catch (error) {
+        console.warn("Auth check failed:", error);
+      }
+    };
+
+    checkAuth();
   }, [router]);
 
   const getRedirectTarget = () => {
@@ -42,6 +54,7 @@ export default function LoginPage() {
     try {
       const response = await fetch(`${API_URL}/api/users/login/`, {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -56,9 +69,6 @@ export default function LoginPage() {
       if (!response.ok) {
         throw new Error(data.detail || "Invalid email or password.");
       }
-
-      localStorage.setItem("access_token", data.access);
-      localStorage.setItem("refresh_token", data.refresh);
 
       const redirectTarget = getRedirectTarget();
       localStorage.removeItem("return_to");

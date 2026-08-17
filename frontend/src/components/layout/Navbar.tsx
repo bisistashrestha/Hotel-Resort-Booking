@@ -19,7 +19,18 @@ export default function Navbar() {
   const menuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    setIsLoggedIn(Boolean(localStorage.getItem("access_token")));
+    const checkAuth = async () => {
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000"}/api/users/profile/`, {
+          credentials: "include",
+        });
+        setIsLoggedIn(response.ok);
+      } catch (error) {
+        setIsLoggedIn(false);
+      }
+    };
+
+    checkAuth();
   }, []);
 
   useEffect(() => {
