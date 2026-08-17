@@ -36,7 +36,7 @@ export default function Accommodations() {
           </h2>
         </div>
 
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:gap-8 md:gap-10 md:grid-cols-2 lg:grid-cols-3">
           {rooms.slice(0, 3).map((room) => (
             <RoomCard
               key={room.name}

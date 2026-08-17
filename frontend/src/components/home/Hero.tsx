@@ -14,21 +14,21 @@ export default function Hero() {
         sizes="100vw"	
         className="object-cover object-center opacity-48 relative"
       />
-      <div className="relative mx-auto min-h-[70vh] sm:min-h-[calc(100vh-88px)] px-4 sm:px-6 md:px-10">
-        <div className="pointer-events-none absolute inset-x-0 top-[12%] sm:top-[9%] text-center">
-          <h1 className="font-heading text-[clamp(3.8rem,7.4vw,6rem)] leading-[0.96] tracking-[-0.03em] text-[var(--color-cream)] drop-shadow-[0_10px_35px_rgba(0,0,0,0.22)]">
+      <div className="relative mx-auto min-h-[72vh] sm:min-h-[calc(100vh-88px)] px-4 sm:px-6 md:px-10">
+        <div className="pointer-events-none absolute inset-x-0 top-[14%] sm:top-[10%] md:top-[9%] text-center">
+          <h1 className="font-heading text-[clamp(2.45rem,8.3vw,6rem)] leading-[0.95] tracking-[-0.03em] text-[var(--color-cream)] drop-shadow-[0_10px_35px_rgba(0,0,0,0.22)]">
             Breathe.
           </h1>
         </div>
 
-        <div className="pointer-events-none absolute inset-x-0 top-[40%] sm:top-[37%] text-center">
-          <h2 className="font-heading text-[clamp(2.95rem,4.9vw,4.9rem)] leading-[0.95] tracking-[-0.025em] text-[var(--color-cream)] drop-shadow-[0_10px_35px_rgba(0,0,0,0.18)]">
+        <div className="pointer-events-none absolute inset-x-0 top-[42%] sm:top-[38%] md:top-[37%] text-center px-3">
+          <h2 className="font-heading text-[clamp(2rem,7vw,4.9rem)] leading-[0.95] tracking-[-0.025em] text-[var(--color-cream)] drop-shadow-[0_10px_35px_rgba(0,0,0,0.18)]">
             Into the Mountains.
           </h2>
         </div>
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-[18%] sm:bottom-[15%] text-center px-4">
-          <p className="text-[clamp(1.2rem,1.7vw,1.7rem)] leading-none text-white/82 drop-shadow-[0_8px_18px_rgba(0,0,0,0.22)]">
+        <div className="pointer-events-none absolute inset-x-0 bottom-[19%] sm:bottom-[15%] text-center px-4">
+          <p className="text-[clamp(0.95rem,3.8vw,1.7rem)] leading-tight text-white/82 drop-shadow-[0_8px_18px_rgba(0,0,0,0.22)]">
             Discover Calm in Every Breeze.
           </p>
         </div>
@@ -44,9 +44,9 @@ export default function Hero() {
             inline-flex
             items-center
             justify-center
-            h-[clamp(52px,4.2vw,5rem)]
-            px-[clamp(1.5rem,4vw,5rem)]
-            text-[clamp(1rem,1.6vw,1.35rem)]
+            h-[clamp(46px,4.2vw,5rem)]
+            px-[clamp(1.25rem,4vw,5rem)]
+            text-[clamp(0.95rem,1.6vw,1.35rem)]
             rounded-full
             bg-[var(--color-primary)]
             !text-[var(--color-cream)]

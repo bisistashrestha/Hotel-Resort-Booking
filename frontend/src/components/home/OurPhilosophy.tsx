@@ -15,17 +15,17 @@ export default function OurPhilosophy() {
         <div className="h-px flex-1 bg-[var(--color-cream)]"></div>
         </div>
 
-        <div className="mx-auto w-[min(92vw,64rem)] bg-[var(--color-deep-forest)] h-auto px-4 sm:px-8 md:px-10 py-6 sm:py-8">
+        <div className="mx-auto w-[min(94vw,64rem)] bg-[var(--color-deep-forest)] h-auto px-4 sm:px-8 md:px-10 py-6 sm:py-8">
             <h1 className="text-center text-[var(--color-primary)] text-[clamp(2rem,6vw,6rem)] leading-none">OUR PHILOSOPHY</h1>
             <p className="text-[var(--color-primary)] text-[clamp(0.7rem,1.2vw,1.1rem)] text-center font-heading">EST. 2026</p>
             <h2 className="pt-8 sm:pt-10 pb-3 text-left text-[var(--color-cream)] text-[clamp(1.5rem,2.5vw,3rem)] leading-tight">Find Stillness in the Mountains</h2>
-            <p className="text-[var(--color-primary)] text-[clamp(1rem,1.2vw,1.5rem)] text-left font-body">
+            <p className="text-[var(--color-primary)] text-[clamp(0.98rem,1.2vw,1.5rem)] text-left font-body leading-relaxed">
                 Inspired by the spirit of <b>山風 (Mountain Wind), Yama Kaze</b> offers a peaceful escape where every moment feels unhurried.
             </p>
-            <p className="pt-8 sm:pt-10 font-quote text-[var(--color-cream)] text-[clamp(1.2rem,3.2vw,3.5rem)] text-left leading-none">
+            <p className="pt-8 sm:pt-10 font-quote text-[var(--color-cream)] text-[clamp(1.15rem,3.2vw,3.5rem)] text-left leading-tight sm:leading-none">
                 "Luxury Isn't Excess. <br></br>It's peace."
             </p>
-            <p className="text-right pb-1 sm:pb-2 font-quote text-[var(--color-cream)] text-[clamp(0.9rem,2.3vw,2.2rem)]">
+            <p className="text-right pb-1 sm:pb-2 font-quote text-[var(--color-cream)] text-[clamp(0.82rem,2.3vw,2.2rem)]">
                 - The  Yama Kaze Philosophy
             </p>
         </div>
