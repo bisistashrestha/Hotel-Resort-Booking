@@ -16,7 +16,7 @@ export default function OurPhilosophy() {
         </div>
 
         <div className="mx-auto w-[min(94vw,64rem)] bg-[var(--color-deep-forest)] h-auto px-4 sm:px-8 md:px-10 py-6 sm:py-8">
-            <h1 className="text-center text-[var(--color-primary)] text-[clamp(2rem,6vw,6rem)] leading-none">OUR PHILOSOPHY</h1>
+            <h1 className="text-center text-[var(--color-primary)] text-[clamp(2rem,4vw,4rem)] leading-none">OUR PHILOSOPHY</h1>
             <p className="text-[var(--color-primary)] text-[clamp(0.7rem,1.2vw,1.1rem)] text-center font-heading">EST. 2026</p>
             <h2 className="pt-8 sm:pt-10 pb-3 text-left text-[var(--color-cream)] text-[clamp(1.5rem,2.5vw,3rem)] leading-tight">Find Stillness in the Mountains</h2>
             <p className="text-[var(--color-primary)] text-[clamp(0.98rem,1.2vw,1.5rem)] text-left font-body leading-relaxed">
