@@ -1,141 +1,91 @@
 # Hotel Booking Web
 
-A full-stack resort booking application for browsing available rooms, creating reservations, and managing trips. The project uses Django REST Framework for the backend API and Next.js for the frontend experience.
+A full-stack resort booking application built with **Django REST Framework** and **Next.js**. Browse available rooms, make reservations, and manage your trips.
 
-This repository is being developed as a portfolio project focused on clean API design, authentication, booking logic, and a modern frontend flow.
+Built during an internship as a portfolio project focused on clean API design, JWT authentication, and a modern frontend flow.
 
-## Project overview
+## Tech Stack
 
-The app includes:
+**Backend:** Python · Django 6 · Django REST Framework · SimpleJWT · DRF Spectacular · SQLite / PostgreSQL
 
-- custom email-based authentication
-- JWT-based API security
-- room listing with availability filtering by date
-- booking creation with total price calculation
-- trip history and cancellation flow
-- Django admin for managing rooms, users, and bookings
-- OpenAPI schema and Swagger docs for backend testing
+**Frontend:** Next.js 16.2 · React 19.2 · TypeScript · Tailwind CSS 4
 
-## Tech stack
-
-### Backend
-
-- Python 3
-- Django 6
-- Django REST Framework
-- DRF Spectacular
-- SimpleJWT
-- PostgreSQL via dj-database-url
-- WhiteNoise
-
-### Frontend
-
-- Next.js
-- React
-- TypeScript
-- Tailwind CSS
-
-## Project structure
+## Project Structure
 
 ```text
 Hotel-Booking-Web/
 ├── backend/
-│   ├── bookings/
-│   ├── config/
-│   ├── users/
-│   ├── db.sqlite3
+│   ├── bookings/    # Room & Booking models, views, serializers
+│   ├── users/       # Custom email-based user model & auth
+│   ├── config/      # Django project settings
 │   ├── manage.py
-│   ├── requirements.txt
-│   └── .env
+│   └── requirements.txt
 ├── frontend/
-│   ├── src/
-│   ├── public/
-│   ├── package.json
-│   ├── next.config.ts
-│   ├── tsconfig.json
-│   └── eslint.config.mjs
-├── LICENSE
-├── README.md
+│   └── src/
+│       ├── app/         # Next.js pages (rooms, booking, my-trips, login, register …)
+│       ├── components/  # Navbar, Footer, RoomCard, Hero …
+│       └── lib/         # API client & room helpers
 └── Notes/
 ```
 
-## Main API routes
+## Room Types
 
-### Authentication
+| Room | Description |
+|---|---|
+| Cedar Room | Cozy forest-facing room |
+| Kaide Suite | Spacious suite with balcony |
+| Pine Villa | Private villa surrounded by trees |
+| Moss Residence | Premium family residence |
+| Summit Suite | Best mountain views |
+| Canopy Villa | Elevated forest retreat |
+| Sora Suite | Sky view retreat |
 
-| Method | Endpoint | Purpose |
-| --- | --- | --- |
-| POST | /api/users/register/ | Register a new user |
-| POST | /api/users/login/ | Obtain JWT tokens |
-| POST | /api/users/token/refresh/ | Refresh JWT tokens |
-| GET | /api/users/profile/ | Fetch authenticated user profile |
+## API Reference
 
-### Rooms
+### Auth
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/users/register/` | Register a new user |
+| POST | `/api/users/login/` | Obtain JWT tokens |
+| POST | `/api/users/token/refresh/` | Refresh access token |
+| GET | `/api/users/profile/` | Get authenticated user profile |
 
-| Method | Endpoint | Purpose |
-| --- | --- | --- |
-| GET | /api/bookings/rooms/ | List available room types |
+### Rooms & Bookings
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/bookings/rooms/` | List rooms — supports `?check_in=YYYY-MM-DD&check_out=YYYY-MM-DD` |
+| POST | `/api/bookings/book/` | Create a booking |
+| GET | `/api/bookings/my-trips/` | View current user's bookings |
+| PATCH | `/api/bookings/<id>/cancel/` | Cancel a booking |
 
-Query parameters:
+Swagger UI: `/api/docs/` · OpenAPI schema: `/api/schema/`
 
-- check_in: YYYY-MM-DD
-- check_out: YYYY-MM-DD
+## Local Setup
 
-Example:
-
-```bash
-http://127.0.0.1:8000/api/bookings/rooms/?check_in=2026-08-10&check_out=2026-08-15
-```
-
-### Bookings
-
-| Method | Endpoint | Purpose |
-| --- | --- | --- |
-| POST | /api/bookings/book/ | Create a booking |
-| GET | /api/bookings/my-trips/ | View current user bookings |
-| PATCH | /api/bookings/<booking_id>/cancel/ | Cancel an upcoming booking |
-
-### API documentation
-
-- Schema: /api/schema/
-- Swagger UI: /api/docs/
-
-## Local setup
-
-### 1. Clone the repository
+**Prerequisites:** Python 3.10+ · Node.js 18+ · npm
 
 ```bash
+# 1. Clone
 git clone <your-repository-url>
 cd Hotel-Booking-Web
-```
 
-### 2. Create and activate a virtual environment
-
-Windows:
-
-```bash
+# 2. Backend
 python -m venv venv
-venv\Scripts\activate
-```
-
-macOS/Linux:
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
-
-### 3. Install backend dependencies
-
-```bash
+venv\Scripts\activate          # Windows
+# source venv/bin/activate     # macOS / Linux
 cd backend
 pip install -r requirements.txt
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver     # → http://127.0.0.1:8000
+
+# 3. Frontend (new terminal)
+cd frontend
+npm install
+npm run dev                    # → http://localhost:3000
 ```
 
-### 4. Configure environment variables
-
-Create a `.env` file in the backend folder.
-
+**Backend `.env`:**
 ```env
 SECRET_KEY=your-secret-key
 DEBUG=True
@@ -143,134 +93,29 @@ DATABASE_URL=sqlite:///db.sqlite3
 ALLOWED_HOSTS=127.0.0.1,localhost
 ```
 
-For PostgreSQL, you can use a full PostgreSQL connection string instead of SQLite.
-
-### 5. Apply database migrations
-
-```bash
-python manage.py migrate
+**Frontend `.env.local`:**
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8000
 ```
 
-### 6. Create a superuser
+Django Admin: `http://127.0.0.1:8000/admin/`
 
-```bash
-python manage.py createsuperuser
-```
+## Future Work
 
-### 7. Run the backend
-
-```bash
-python manage.py runserver
-```
-
-The backend will be available at:
-
-```text
-http://127.0.0.1:8000
-```
-
-### 8. Run the frontend
-
-Open a second terminal and run:
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-The frontend will be available at:
-
-```text
-http://localhost:3000
-```
-
-## Admin access
-
-After creating a superuser, log in to:
-
-```text
-http://127.0.0.1:8000/admin/
-```
-
-## Notes
-
-- The backend is set up with custom user authentication and JWT support.
-- Room availability filtering prevents overlapping bookings for active reservations.
-- Booking totals are calculated as check-out date minus check-in date multiplied by nightly rate.
-- The app is intended for a single resort / hotel brand experience.
+- Payment gateway integration
+- Email notifications for bookings and cancellations
+- Room image uploads
+- Guest reviews and ratings
+- Availability calendar
+- Invoice / PDF receipt generation
+- Resort analytics dashboard
 
 ## License
 
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+MIT — see [LICENSE](LICENSE) for details.
 
+## Author
 
----
+**Bisista Shrestha** · Computer Science & Engineering Student · Internship Project
 
-# 📋 Roadmap
-
-### Backend
-
-* [x] Custom User Model
-* [x] JWT Authentication
-* [x] Room API
-* [x] Booking API
-* [x] Booking Cancellation
-* [x] Double-booking Prevention
-* [x] API Documentation (Swagger/OpenAPI)
-* [x] Automated Tests (in Postman)
-
-### Frontend
-
-* [ ] Authentication UI
-* [ ] Home Page
-* [ ] Room Listing
-* [ ] Room Details
-* [ ] Booking Flow
-* [ ] User Dashboard
-* [ ] Booking History
-* [ ] Responsive Design
-
-### Future Features
-
-* Payment Gateway Integration
-* Email Notifications
-* Room Images
-* Reviews & Ratings
-* Resort Analytics Dashboard
-* Invoice Generation
-* Availability Calendar
-
----
-
-# 🤝 Contributing
-
-Contributions, suggestions, and feedback are welcome.
-
-1. Fork the repository.
-2. Create a new feature branch.
-3. Commit your changes.
-4. Open a Pull Request.
-
----
-
-# 📄 License
-
-This project is licensed under the MIT License. See the **LICENSE** file for details.
-
----
-
-# 👨‍💻 Author
-
-**Bisista Shrestha**
-
-Computer Science & Engineering Student
-
-**Current Focus**
-
-* Django REST Framework
-* PostgreSQL
-* Next.js
-* Full-Stack Web Development
-
-If you found this project helpful, consider giving it a ⭐ on GitHub.
+Django REST Framework · PostgreSQL · Next.js · Full-Stack Web Development
