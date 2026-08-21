@@ -1,32 +1,32 @@
-# Hotel Booking Web
+﻿# Yama Kaze - Resort Booking Web App
 
-A full-stack resort booking application built with **Django REST Framework** and **Next.js**. Browse available rooms, make reservations, and manage your trips.
+A full-stack resort booking application built during an internship(@CloudOnHire). Guests can browse available rooms, make reservations, and manage their trips through a clean, modern interface.
 
-Built during an internship as a portfolio project focused on clean API design, JWT authentication, and a modern frontend flow.
+**Live demo:** [frontend on Vercel](https://hotel-resort-booking-66l2.vercel.app/) · [API on Render](https://hotel-booking-n19u.onrender.com/api/bookings/rooms/)
+
+---
 
 ## Tech Stack
 
-**Backend:** Python · Django 6 · Django REST Framework · SimpleJWT · DRF Spectacular · SQLite / PostgreSQL
+| Layer | Technologies |
+|---|---|
+| Backend | Python · Django 6 · Django REST Framework · SimpleJWT · DRF Spectacular |
+| Frontend | Next.js 16.2 · React 19.2 · TypeScript · Tailwind CSS 4 |
+| Database | SQLite (dev) · PostgreSQL (prod) |
+| Deployment | Render (backend) · Vercel (frontend) |
 
-**Frontend:** Next.js 16.2 · React 19.2 · TypeScript · Tailwind CSS 4
+---
 
-## Project Structure
+## Features
 
-```text
-Hotel-Booking-Web/
-├── backend/
-│   ├── bookings/    # Room & Booking models, views, serializers
-│   ├── users/       # Custom email-based user model & auth
-│   ├── config/      # Django project settings
-│   ├── manage.py
-│   └── requirements.txt
-├── frontend/
-│   └── src/
-│       ├── app/         # Next.js pages (rooms, booking, my-trips, login, register …)
-│       ├── components/  # Navbar, Footer, RoomCard, Hero …
-│       └── lib/         # API client & room helpers
-└── Notes/
-```
+- Email-based authentication with **HttpOnly cookie JWT** (no localStorage exposure)
+- Room availability filtering by check-in / check-out date
+- Booking creation with automatic total price calculation
+- Trip history and cancellation (blocked on or after check-in date)
+- Django Admin for managing rooms, users, and bookings
+- Swagger UI and OpenAPI schema for API exploration
+
+---
 
 ## Room Types
 
@@ -40,52 +40,81 @@ Hotel-Booking-Web/
 | Canopy Villa | Elevated forest retreat |
 | Sora Suite | Sky view retreat |
 
+---
+
 ## API Reference
 
-### Auth
+Base URL (production): `https://your-api.onrender.com`
+
+### Auth — `/api/users/`
+
 | Method | Endpoint | Description |
 |---|---|---|
-| POST | `/api/users/register/` | Register a new user |
-| POST | `/api/users/login/` | Obtain JWT tokens |
-| POST | `/api/users/token/refresh/` | Refresh access token |
-| GET | `/api/users/profile/` | Get authenticated user profile |
+| POST | `/register/` | Register a new user |
+| POST | `/login/` | Login and set auth cookies |
+| POST | `/logout/` | Clear auth cookies |
+| POST | `/token/refresh/` | Rotate access token via cookie |
+| GET | `/profile/` | Get authenticated user profile |
 
-### Rooms & Bookings
+### Rooms & Bookings — `/api/bookings/`
+
 | Method | Endpoint | Description |
 |---|---|---|
-| GET | `/api/bookings/rooms/` | List rooms — supports `?check_in=YYYY-MM-DD&check_out=YYYY-MM-DD` |
-| POST | `/api/bookings/book/` | Create a booking |
-| GET | `/api/bookings/my-trips/` | View current user's bookings |
-| PATCH | `/api/bookings/<id>/cancel/` | Cancel a booking |
+| GET | `/rooms/` | List rooms — filter with `?check_in=YYYY-MM-DD&check_out=YYYY-MM-DD` |
+| POST | `/book/` | Create a booking |
+| GET | `/my-trips/` | View current user's bookings |
+| PATCH | `/<id>/cancel/` | Cancel an upcoming booking |
 
-Swagger UI: `/api/docs/` · OpenAPI schema: `/api/schema/`
+> Swagger UI: `/api/docs/` · Raw schema: `/api/schema/`
+
+---
+
+## Project Structure
+
+```text
+Hotel-Booking-Web/
+├── backend/
+│   ├── bookings/    # Room & Booking models, views, serializers
+│   ├── users/       # Custom email-based user, cookie auth
+│   ├── config/      # Django settings
+│   ├── manage.py
+│   └── requirements.txt
+├── frontend/
+│   └── src/
+│       ├── app/         # Pages: rooms, booking, checkout, my-trips, login, register …
+│       ├── components/  # Navbar, Footer, Hero, RoomCard …
+│       └── lib/         # API client, room helpers
+└
+```
+
+---
 
 ## Local Setup
 
 **Prerequisites:** Python 3.10+ · Node.js 18+ · npm
 
+### Backend
+
 ```bash
-# 1. Clone
+# Clone the repo
 git clone <your-repository-url>
 cd Hotel-Booking-Web
 
-# 2. Backend
+# Create and activate virtual environment
 python -m venv venv
-venv\Scripts\activate          # Windows
-# source venv/bin/activate     # macOS / Linux
+venv\Scripts\activate        # Windows
+source venv/bin/activate     # macOS / Linux
+
+# Install and run
 cd backend
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py createsuperuser
-python manage.py runserver     # → http://127.0.0.1:8000
-
-# 3. Frontend (new terminal)
-cd frontend
-npm install
-npm run dev                    # → http://localhost:3000
+python manage.py runserver   # http://127.0.0.1:8000
 ```
 
-**Backend `.env`:**
+Create `backend/.env`:
+
 ```env
 SECRET_KEY=your-secret-key
 DEBUG=True
@@ -93,12 +122,24 @@ DATABASE_URL=sqlite:///db.sqlite3
 ALLOWED_HOSTS=127.0.0.1,localhost
 ```
 
-**Frontend `.env.local`:**
+### Frontend
+
+```bash
+# In a new terminal
+cd frontend
+npm install
+npm run dev                  # http://localhost:3000
+```
+
+Create `frontend/.env.local`:
+
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:8000
 ```
 
-Django Admin: `http://127.0.0.1:8000/admin/`
+Django Admin → `http://127.0.0.1:8000/admin/`
+
+---
 
 ## Future Work
 
@@ -110,12 +151,16 @@ Django Admin: `http://127.0.0.1:8000/admin/`
 - Invoice / PDF receipt generation
 - Resort analytics dashboard
 
+---
+
 ## License
 
 MIT — see [LICENSE](LICENSE) for details.
 
+---
+
 ## Author
 
-**Bisista Shrestha** · Computer Science & Engineering Student · Internship Project
+**Bisista Shrestha** · Computer Science & Engineering Student · Internship Project(@CloudOnHire)
 
 Django REST Framework · PostgreSQL · Next.js · Full-Stack Web Development
